@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pricing Calculator</title>
+    <title>Price Calculator</title>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
     
     <div style="height: 1px; background: linear-gradient(90deg, transparent, #f1c40f, transparent); width: 100%; margin: 10px 0;"></div>
     
-    <h4 style="margin: 0 0 30px 0; color: #bdc3c7; font-weight: 300; font-size: 14px; letter-spacing: 4px; text-transform: uppercase;">Pricing Calculator</h4>
+    <h4 style="margin: 0 0 30px 0; color: #bdc3c7; font-weight: 300; font-size: 14px; letter-spacing: 4px; text-transform: uppercase;">Price Calculator</h4>
   </div>
   
   <div style="text-align: left; margin: 0 auto; width: 100%; max-width: 350px;">
@@ -52,14 +52,15 @@
 <script>
 function fitText() {
   const header = document.getElementById('dynamicHeader');
-  header.style.fontSize = "45px"; 
-  let size = 45;
-  while (header.scrollWidth > 350 && size > 20) {
-    size--;
-    header.style.fontSize = size + "px";
-  }
+  const container = header.parentElement;
+  let newSize = container.clientWidth * 0.15;
+  if (newSize > 50) newSize = 50;
+  if (newSize < 20) newSize = 20;
+  header.style.fontSize = newSize + "px";
 }
+
 window.onload = fitText;
+window.onresize = fitText;
 
 function calculate() {
   let A2 = parseFloat(document.getElementById('A2').value) || 0;
